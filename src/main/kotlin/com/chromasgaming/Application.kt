@@ -1,17 +1,16 @@
 package com.chromasgaming
 
-import com.chromasgaming.ktweet.models.OAuth
-import com.chromasgaming.ktweet.models.OAuth2
-import com.chromasgaming.plugins.*
-import io.ktor.client.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.server.application.*
-import io.ktor.server.sessions.*
-import io.ktor.serialization.kotlinx.json.*
-import io.ktor.server.engine.*
+import com.chromasgaming.plugins.configureRouting
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.cio.CIO
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.serialization.kotlinx.json.json
+import io.ktor.server.application.Application
+import io.ktor.server.application.install
+import io.ktor.server.engine.embeddedServer
+import io.ktor.server.sessions.Sessions
+import io.ktor.server.sessions.cookie
 import kotlinx.serialization.json.Json
-import java.time.LocalDateTime
 
 val applicationHttpClient = HttpClient(CIO) {
     install(ContentNegotiation) {

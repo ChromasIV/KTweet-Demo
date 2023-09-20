@@ -1,24 +1,22 @@
 package com.chromasgaming.plugins
 
 import com.chromasgaming.UserSession
-import com.chromasgaming.ktweet.models.OAuth2
 import com.chromasgaming.ktweet.oauth2.TwitterOauth2Authentication
-import io.ktor.server.application.*
-import io.ktor.server.html.*
-import io.ktor.server.response.*
-import io.ktor.server.routing.*
+import io.ktor.server.application.Application
+import io.ktor.server.application.ApplicationCall
+import io.ktor.server.application.call
+import io.ktor.server.html.respondHtml
+import io.ktor.server.response.respondRedirect
 import io.ktor.server.routing.get
+import io.ktor.server.routing.routing
 import io.ktor.server.sessions.get
-import io.ktor.server.sessions.sessionId
 import io.ktor.server.sessions.sessions
 import io.ktor.server.sessions.set
 import kotlinx.html.ButtonType
 import kotlinx.html.a
-import kotlinx.html.attributesMapOf
 import kotlinx.html.body
 import kotlinx.html.button
 import kotlinx.html.div
-import kotlinx.html.h1
 import kotlinx.html.h2
 import kotlinx.html.head
 import kotlinx.html.id
@@ -34,10 +32,8 @@ import kotlinx.html.th
 import kotlinx.html.thead
 import kotlinx.html.tr
 import kotlinx.html.ul
-
 import kotlinx.serialization.ExperimentalSerializationApi
 import java.time.Instant
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZoneOffset
@@ -47,7 +43,7 @@ fun Application.configureRouting() {
     routing {
 
         get("/login") {
-            call.respondRedirect("https://twitter.com/i/oauth2/authorize?response_type=code&client_id=${System.getProperty("clietnId")}&redirect_uri=http://127.0.0.1:8080/callback&scope=tweet.write%20tweet.read%20users.read%20offline.access&state=state&code_challenge=challenge&code_challenge_method=plain")
+            call.respondRedirect("https://twitter.com/i/oauth2/authorize?response_type=code&client_id=${System.getProperty("clientId")}&redirect_uri=http://127.0.0.1:8080/callback&scope=tweet.write%20tweet.read%20users.read%20offline.access&state=state&code_challenge=challenge&code_challenge_method=plain")
         }
 
         get("/callback") {
