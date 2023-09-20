@@ -44,5 +44,7 @@ dependencies {
     testImplementation("io.ktor:ktor-server-tests-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation("com.chromasgaming:ktweet:2.0.0")
+
+    //implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 }
